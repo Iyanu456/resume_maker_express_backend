@@ -9,7 +9,7 @@ var connectLiveReload = require("connect-livereload");
 const db = require('./db'); // MongoDB connection setup
 
 var indexRouter = require('./routes/index');
-//var usersRouter = require('./routes/users');
+var protectedRouter = require('./routes/protectedRoute');
 
 
 const liveReloadServer = livereload.createServer();
@@ -38,7 +38,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 
 app.use('/', indexRouter);
-//app.use('/users', usersRouter);
+app.use(protectedRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
