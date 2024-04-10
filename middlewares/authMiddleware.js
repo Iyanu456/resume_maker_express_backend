@@ -2,7 +2,9 @@ const passport = require('passport');
 const passportJWT = require('passport-jwt');
 const JWTStrategy = passportJWT.Strategy;
 const ExtractJWT = passportJWT.ExtractJwt;
-const jwtSecret = 'iyanu'; // Replace with your secret key
+require('dotenv').config();
+
+const jwtSecret = process.env.JWT_SECRET; // Replace with your secret key
 
 const User = require('../models/user'); // Assuming you have a User model
 

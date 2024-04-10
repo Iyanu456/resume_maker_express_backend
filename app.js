@@ -5,6 +5,7 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var livereload = require("livereload");
 var connectLiveReload = require("connect-livereload");
+const cors = require('cors');
 
 const db = require('./db'); // MongoDB connection setup
 
@@ -29,6 +30,11 @@ app.use(connectLiveReload());
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
+app.use(cors({
+  origin: 'http://localhost:5173',
+  methods: ['GET', 'POST'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
+}));
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
